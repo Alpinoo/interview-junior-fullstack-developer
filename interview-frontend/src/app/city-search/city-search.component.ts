@@ -12,6 +12,8 @@ export class CitySearchComponent {
   currentPage: number = 1;
   pageSize: number = 5;
   totalCities: number = 0; //Keep track of total cities to disable next navigation
+  searchPerformed: boolean = false; // if search has been performed
+
 
 
   constructor(private http: HttpClient) {}
@@ -41,6 +43,7 @@ export class CitySearchComponent {
     .subscribe((response) => {
       this.cities = response.cities;
       this.totalCities = response.totalCount;
+      this.searchPerformed = true;
     });
 }
 }

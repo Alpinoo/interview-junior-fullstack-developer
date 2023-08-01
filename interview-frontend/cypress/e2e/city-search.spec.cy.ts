@@ -32,4 +32,15 @@ describe('City Search E2E Test', () => {
     cy.get('ul li').should('have.length', 5); 
   });
 
+
+  it('should display a message for empty search result', () => {
+    cy.visit('/');
+    const searchTerm = 'Invalid City Name';
+
+    cy.get('input[name="searchTerm"]').type(searchTerm);
+    cy.get('button[type="submit"]').click();
+
+    cy.contains('No cities found'); 
+  });
+
 });

@@ -7,7 +7,11 @@ export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @Get()
-  getCities(@Query('searchTerm') searchTerm: string): City[] {
-    return this.citiesService.searchCities(searchTerm);
+  getCities(
+    @Query('searchTerm') searchTerm: string,
+    @Query('page') page = 1,
+    @Query('pageSize') pageSize = 5,
+  ): { cities: City[]; totalCount: number } {
+    return this.citiesService.searchCities(searchTerm, page, pageSize);
   }
 }

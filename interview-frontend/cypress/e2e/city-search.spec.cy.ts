@@ -12,4 +12,24 @@ describe('City Search E2E Test', () => {
     cy.contains('ul li', searchTerm);
   });
 
+  it('should display paginated cities', () => {
+    cy.visit('/');
+    const searchTerm = 'A'; 
+
+    cy.get('input[name="searchTerm"]').type(searchTerm);
+    cy.get('button[type="submit"]').click();
+
+    cy.get('ul li').should('have.length', 5); 
+
+
+    cy.contains('button', 'Next').click();
+
+    cy.get('ul li').should('have.length', 5);
+
+ 
+    cy.contains('button', 'Previous').click();
+
+    cy.get('ul li').should('have.length', 5); 
+  });
+
 });

@@ -27,5 +27,21 @@ describe('CitySearchComponent', () => {
     expect(component.pageSize).toEqual(5);
     expect(component.totalCities).toEqual(0);
   });
+  it('should navigate to previous and next pages correctly', () => {
+    component.searchTerm = 'w'
+    component.totalCities = 15;
+    component.currentPage = 2;
+
+    component.previousPage();
+    expect(component.currentPage).toEqual(1);
+
+    component.nextPage();
+    expect(component.currentPage).toEqual(2);
+
+    component.nextPage();
+    expect(component.currentPage).toEqual(3);
+
+
+  });
   
 });

@@ -43,4 +43,14 @@ describe('City Search E2E Test', () => {
     cy.contains('No cities found'); 
   });
 
+  it('should display a warning message when the search button is clicked without entering a city name', () => {
+    cy.visit('/');
+
+    cy.get('button[type="submit"]').click();
+
+    // Check if the warning message is displayed
+    cy.contains('Please enter a city name to search.'); 
+
+  });
+
 });

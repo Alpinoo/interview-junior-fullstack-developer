@@ -20,4 +20,12 @@ describe('CitySearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should have initial values set', () => {
+    expect(component.searchTerm).toEqual('');
+    expect(component.cities).toEqual([]);
+    expect(component.currentPage).toEqual(1);
+    expect(component.pageSize).toEqual(5);
+    expect(component.totalCities).toEqual(0);
+  });
+  
 });

@@ -15,10 +15,17 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  // test for data is greater than 1 and total data is equal to 100
+  it('/cities (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/cities')
       .expect(200)
-      .expect('Hello World!');
+      .expect((response) => {
+        const data = response.body;
+        expect(data.cities).toBeDefined();
+        expect(Array.isArray(data.cities)).toBeTruthy();
+        expect(data.cities.length).toBeGreaterThan(1);
+        expect(data.totalCount).toBe(100);
+      });
   });
 });

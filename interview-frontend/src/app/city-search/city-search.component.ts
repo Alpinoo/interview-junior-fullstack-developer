@@ -13,13 +13,24 @@ export class CitySearchComponent {
   pageSize: number = 5;
   totalCities: number = 0; //Keep track of total cities to disable next navigation
   searchPerformed: boolean = false; // if search has been performed
+  searchWarning: string = ''; // Warning message for empty search term
+
 
 
 
   constructor(private http: HttpClient) {}
 
   searchCities() {
+    if (!this.searchTerm.trim()) {
+      this.searchWarning = 'Please enter a city name to search.';
+      this.cities = [];
+      this.totalCities = 0;
+      this.searchPerformed = false;
+      return;
+    }
+
     this.currentPage = 1;
+    this.searchWarning = '';
     this.fetchCities();
   }
 

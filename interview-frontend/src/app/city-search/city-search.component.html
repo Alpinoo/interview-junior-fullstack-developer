@@ -4,6 +4,10 @@
   <button type="submit">Search</button>
 </form>
 
+<div *ngIf="searchWarning">
+  <p>{{ searchWarning }}</p>
+</div>
+
 <div *ngIf="cities.length > 0 || !searchPerformed">
   <ul>
     <li *ngFor="let city of cities">{{ city.cityName }} (Count: {{ city.count }})</li>
